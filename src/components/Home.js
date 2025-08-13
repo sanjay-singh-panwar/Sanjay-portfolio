@@ -24,7 +24,7 @@ export default function Home() {
         </div>
 
         <h1 className="display-4 fw-bold mb-3 animate-fade">
-          Radhe Radhe, I’m <span className="highlight-name">Sanjay Singh Panwar</span>
+          Hello, I’m <span className="highlight-name">Sanjay Singh Panwar</span>
         </h1>
 
         <h2 className="typing-text mb-4 fs-4">
