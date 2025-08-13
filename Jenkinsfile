@@ -4,11 +4,9 @@ pipeline{
         githubPush()  // Trigger when code is pushed to GitHub 
     } 
 
-B
         environment { 
         EC2_IP = '3.85.44.13'                  // Replace with EC2 Public IP 
         SSH_CRED = 'ssh-key'           // Jenkins SSH credentials ID 
-B
         FRONTEND_REPO = 'git@github.com:sanjay-singh-panwar/Sanjay-portfolio.git'  // Your GitHub repo 
         FRONTEND_DIR = '/home/ubuntu/project'     // Folder on EC2 
     } 
