@@ -1,0 +1,26 @@
+stages:
+  - build
+  - test
+  - deploy
+
+  build_job:
+    stage: build
+    scripts:
+       docker build -t Sanjay-portfolio .
+    tags:
+        dev
+
+  test_job:
+    stage: test
+    scripts:
+      echo "testing ......."
+    tags:
+        dev
+
+  deploy_job:
+    stage: deploy
+    scripts:
+      docker run -d -p 3000:3000 Sanjay-portfolio
+    tags:
+      dev
+     
