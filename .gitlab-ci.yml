@@ -3,24 +3,27 @@ stages:
   - test
   - deploy
 
-  build_job:
-    stage: build
-    scripts:
-       docker build -t Sanjay-portfolio .
-    tags:
-        dev
+variables:
+  DOCKER_BUILDKIT: 0
 
-  test_job:
-    stage: test
-    scripts:
-      echo "testing ......."
-    tags:
-        dev
+build_job:
+  stage: build
+  script:
+    - docker build -t sanjay-portfolio .
+  tags:
+    - dev
 
-  deploy_job:
-    stage: deploy
-    scripts:
-      docker run -d -p 3000:3000 Sanjay-portfolio
-    tags:
-      dev
-     
+test_job:
+  stage: test
+  script:
+    - echo "testing ......."
+  tags:
+    - dev
+
+deploy_job:
+  stage: deploy
+  script:
+    - docker run -d -p 3000:3000 sanjay-portfolio
+  tags:
+    - dev
+
