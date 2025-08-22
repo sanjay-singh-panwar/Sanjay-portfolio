@@ -5,7 +5,7 @@ pipeline{
     } 
 
         environment { 
-        EC2_IP = '18.215.171.60'                  // Replace with EC2 Public IP 
+        EC2_IP = '107.22.11.126'                  // Replace with EC2 Public IP 
         SSH_CRED = 'ssh-key'           // Jenkins SSH credentials ID 
         FRONTEND_REPO = 'git@github.com:sanjay-singh-panwar/Sanjay-portfolio.git'  // Your GitHub repo 
         FRONTEND_DIR = '/home/ubuntu/project'     // Folder on EC2 
