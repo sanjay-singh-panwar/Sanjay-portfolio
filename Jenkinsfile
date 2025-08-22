@@ -5,7 +5,7 @@ pipeline{
     } 
 
         environment { 
-        EC2_IP = '3.85.44.13'                  // Replace with EC2 Public IP 
+        EC2_IP = '18.215.171.60'                  // Replace with EC2 Public IP 
         SSH_CRED = 'ssh-key'           // Jenkins SSH credentials ID 
         FRONTEND_REPO = 'git@github.com:sanjay-singh-panwar/Sanjay-portfolio.git'  // Your GitHub repo 
         FRONTEND_DIR = '/home/ubuntu/project'     // Folder on EC2 
@@ -29,6 +29,9 @@ pipeline{
                             cd ${FRONTEND_DIR} &&           
                             npm install &&
                             npm run build 
+                            # Copy build files to Nginx root
+                            sudo rm -rf /var/www/html/* &&
+                            sudo cp -r build/* /var/www/html/
                         ' 
                     """ 
                 } 
@@ -49,4 +52,3 @@ pipeline{
     } 
 
 }
-
