@@ -1,0 +1,57 @@
+-
+  name: portfolio project
+  hosts: junoon_servers
+  become: yes
+
+  vars:
+    image_name: portfolio:latest
+    app_path: /home/ubuntu/portfolio
+    container_name: portfolio_container
+
+  tasks:
+    - name: Clone the application's source code
+      ansible.builtin.git:
+        repo: 'https://github.com/sanjay-singh-panwar/Sanjay-portfolio.git'
+        dest: '/home/ubuntu/portfolio'
+        clone: yes
+        update: yes
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: install docker in ubuntu
+      package:
+        name: docker.io
+        state: latest
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: start docker in ubuntu or Amazon
+      systemd_service:
+        name: docker
+        state: started
+      when: ansible_distribution == 'ubuntu' or ansible_distribution == 'Amazon'
+
+    - name: Add current Ansible user to docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+
+    - name: Test docker without sudo
+      command: docker ps
+      become: false
+
+    - name: Build Docker image from Dockerfile
+      community.docker.docker_image:
+        name: "{{ image_name }}"
+        build:
+          path: "{{ app_path }}"
+        source: build
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Run container from image
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}"
+        state: started
+        restart_policy: always
+        ports:
+          - "3000:3000"
+      when: ansible_distribution == 'Ubuntu'                                                                                   
