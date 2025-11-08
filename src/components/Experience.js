@@ -7,7 +7,7 @@ const experiences = [
   {
     role: 'DevOps Intern ',
     company: 'Shiwansh Solutions',
-    duration: 'August 2025 - Present',
+    duration: 'August 2025 - November 2025',
     description:
       'Assisting in the setup and maintenance of CI/CD pipelines using tools like Jenkins and Git. Gaining hands-on experience with AWS services such as EC2 and S3 for application deployment. Working on automating routine tasks using Shell and Python scripting. Supporting the DevOps team in containerizing applications using Docker and managing code through Git and GitHub.'
   }
